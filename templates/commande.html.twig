@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>DoneIT</title>
+        <link rel="stylesheet" href="../src/style/css/doneit_fix.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    </head>
+    <body>
+    <form action="../models/addCommande.php" method="post" class="form-commande" enctype="multipart/form-data">
+        <section id="welcome">
+          <div id="content">
+              <h3>
+                  Réparer en un clin d'oeil
+              </h3>
+              <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam vero corrupti in ipsum sequi quibusdam iste ad quae dolores excepturi?
+              </p>
+              <div class="fields">
+                  <div id="list-devices">
+                      <!--list select-->
+                      <div class="dropdown">
+                       <select name="categorie" id="categorie" required>
+                        <option value="">Appareil à réparer</option>
+                        {% for categorie in listeCategories %}
+                            <option value="{{ categorie.nom }}">{{ categorie.nom }}</option>
+                        {% endfor %}
+                    </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="fields">
+                  <div id="address">
+                      <input type="text" id="adresse" name="adresse" required minlength="4" maxlength="55" size="20" placeholder="votre adresse">
+                  </div>
+              </div>
+              <div class="fields">
+                  <button id="clickfix">
+                      <label>Prendre rendez-vous</label>
+                  </button>
+              </div>
+          </div>
+          <div id="picture"></div>
+      </section><!--end welcome-->
+        <section id="fix">
+          <div id="fix-content">
+            <h3>
+              Reservez votre créneaux
+            </h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+              labore et dolore magna aliqua. Ut enim ad minim veniam
+          </div>
+          <div id="fix-fields">
+            <div id="fix-saisie">
+              <div id="list-devices">
+                <!--list select-->
+                <div class="dropdown">
+                  <select name="naturePanne" id="naturePanne" required>
+                        <option value="">Nature de la panne</option>
+                        <option value="1">Ne s'allume plus</option>
+                        <option value="2">Ne s'allume plus</option>
+                        <option value="3">Ne s'allume plus</option>
+                    </select>
+                </div>
+              </div>
+              <div class="fields">
+                <div id="address"><!--ajouter adresse en placeholder-->
+                    <input type="text" id="name" name="name" required minlength="4" maxlength="8" size="10">
+                </div>
+              </div>
+            
+            </div>
+
+            <div id="fix-options">
+              <p><!--ajouter les images devant chaque options ou faire un tableau-->
+                réparation garantie 6 mois  déplacements inclus  pack zero risque
+              </p>
+            </div>
+
+          </div>
+          <button id="clickinfos">
+            <label>Réserver</label>
+          </button>
+        </section><!--end fix-->
+        <section id="fix-infos">
+          <div id="infos-content">
+            <h3>indiquez nous votre pannes</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+            </p>
+          </div>
+        <div id="fix-infos-content">
+          <div id="nature">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <nav>
+                  Nature de la panne
+                </nav>
+                </button><!--modifier les options-->
+                <div class="dropdown-menu" aria-labelledby="Nature de la panne">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+          </div>
+          <div id="description">
+            <textarea id="autre" name="autre" placeholder="Autre"></textarea>
+            <textarea id="precisions" name="presicions" placeholder="Précisez la nature de la panne en détails"></textarea>
+            <textarea id="autre" name="autre" placeholder="Marque de l'appareil"></textarea>
+            <textarea id="autre" name="autre" placeholder="Reference de l'appareil"></textarea>
+          </div>
+          <div id="adresse">
+            <!--affiche les infos récup dans les form donc la c'est du back-->
+          </div>
+        </div>
+        <button id="clickpaiement">
+          <label>
+            Confirmer
+          </label>
+        </button>
+        </section><!--end fix-infos-->
+        <section id="fix-paiement"><!--faire le js pour remplacer l'ancienne section-->
+          <div id="paiement">
+            <h3>Payer après l'intervention</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos obcaecati commodi labore nobis vitae illum amet mollitia quia ad.
+            </p>
+          </div>
+            <!--ajouter le logo de cb -->
+            <div id="num-card">
+              <label>numéro de carte</label>
+              <input type="number" required/>
+            </div>
+            <div id="card-infos">
+              <div id="date">
+                <label>date de fin</label>
+                <input type="number" required/>
+              </div>
+              <div id="CCV">
+                <label>CCV</label>
+                <input type="number" required/>
+              </div>
+            </div>
+            <div id="checkbox">
+              <div>
+                <input type="checkbox" id="scales" name="conditions">
+                <label for="conditions">En validant, vous acceptez les conditions générales de ventes de Murfy.fr.</label>
+              </div>
+              <div>
+                <input type="checkbox" id="scales" name="newsletter">
+                <label for="newsletter">Je souhaite recevoir la newsletter et les astuces d’experts de Done’It.</label>
+              </div>
+            </div>
+            <button type="sumbit" id="clickconfirm">
+              <label>Régler</label>
+            </button>
+        </section><!--end fix-paiement-->
+      </form>
+        <section id="confirmation">
+          <div id="tittle-confirmation">
+            <h3>
+              Felicitation, votre rendez-vous est PRIS !
+            </h3>
+            <p>
+              Un récapitulatif viens de vous être envoyé par mai, vous recevrez un texto la veille de votre rendez-vous ! Vous pouvez modifier vos
+              informations jusqu’à 4 jours avant votre rendez-vous.
+            </p>
+          </div>
+          <div id="fix-infos-confirm">
+            <div id="left">
+              <h4>Adresse</h4>
+              <!--infos back-->
+              <h4>Appareil</h4>
+              <h4>Crénaux</h4>
+            </div>
+            <div id="right">
+              <h4>Nature de la panne</h4>
+              <h4>Paiement</h4>
+              <h4>Total</h4>
+            </div>
+          </div>
+          <div id="buttons">
+            <button id="change">
+              Modifier les informations
+            </button>
+            <button>
+              Réparer un autre objet
+            </button>
+          </div>
+        </section><!--end confirmation-->
+        <section id="complement">
+          <h3>Preservez l’environnement et votre porte monnaie !</h3>
+          <div id="cards">
+            <div id="paiement">
+              <h4>Paiement 3x</h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, quasi?</p>
+            </div>
+            <div id="when">
+              <h4>C'est quand vous voulez</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, asperiores!</p>
+            </div>
+            <div id="free">
+              <h4>Annulation gratuite</h4>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, unde!</p>
+            </div>
+          </div>
+        </section><!--end complement-->
+        <footer>
+            <div id="notice">
+                <div class="notice">
+                    <div class="stars">
+
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit qui nobis, totam veniam vero architecto!
+                    </p>
+                </div>
+                <div class="notice">
+                    <div class="stars">
+
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta facere non explicabo laudantium similique sed.
+                    </p>
+                </div>
+                <div class="notice">
+                    <div class="stars">
+
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima eaque et doloremque aperiam eius molestias!
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <script>
+          var clickfix = document.getElementById("clickfix");
+          var clickinfos = document.getElementById("clickinfos");
+          var clickpaiement = document.getElementById("clickpaiement");
+          var clickconfirm = document.getElementById("clickconfirm");
+          var welcome = document.getElementById("welcome");
+          var fix = document.getElementById("fix");
+          var infos = document.getElementById("fix-infos");
+          var paiement = document.getElementById("fix-paiement");
+          var confirmation = document.getElementById("confirmation");
+          function showFix()
+          {
+            welcome.style.display = "none";
+            fix.style.display = "block";
+          };
+          function showInfos()
+          {
+            infos.style.display = "block";
+            fix.style.display = "none";
+          };
+          function showPaiement()
+          {
+            infos.style.display = "none";
+            paiement.style.display = "block";
+          };
+          function showConfirm()
+          {
+            paiement.style.display = "none";
+            confirmation.style.display = "block";
+          };
+          clickfix.onclick = showFix;
+          clickinfos.onclick = showInfos;
+          clickpaiement.onclick = showPaiement;
+          clickconfirm.onclick = showConfirm;
+        </script>
+         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    </body>
+</html>

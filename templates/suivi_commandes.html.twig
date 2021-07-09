@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/suivi_commandes.js"></script>
+         {# <link href="../style/suivi_commandes.css" rel="stylesheet">  #}
+        <title>Suivi des commandes</title>
+    </head>
+    <body>
+        {% for commande in listeCommandes  %}
+            Commande n° : {{ commande.idCommande }}
+            </br>
+            type : {{ commande.categorie }}
+            </br>
+            marque : {{ commande.marque }}
+            </br>
+            etat : {{ commande.etat }}
+            </br>
+            {% if pro == 1 %}
+            Adresse client : {{ commande.adresse }}
+            </br>
+            {% endif %}
+            {% for image in commande.codeImage %}
+                <img src="../commande_images/{{ image }}" width="100">
+            {% endfor %}
+            </br>
+            {% if commande.etat < 3 and pro == 0 %}
+            <form action="#" id="formUploadImage" class="formUploadImage" method="post" class="form-entreprise" enctype="multipart/form-data">
+                <input type="file" class="uploadImage" id="uploadImage" name="uploadImage[]" accept="image/png, image/jpeg, image/gif" multiple>
+                <input type="text" id="numCommande" name="numCommande" value="{{ commande.idCommande }}" hidden>
+            </form>
+            {% endif %}
+            {% if commande.etat >= 1 and commande.etat < 3 and pro == 1 %}
+            <form action="#" id="formUploadDevis" class="formUploadDevis" method="post" class="form-entreprise" enctype="multipart/form-data">
+                <input type="file" class="uploadDevis" id="uploadDevis" name="uploadDevis[]" accept=".doc,.docx,application/msword,.pdf">
+                <input type="text" id="numCommande" name="numCommande" value="{{ commande.idCommande }}" hidden>
+            </form>
+            {% endif %}
+            {% if commande.etat >= 1 and commande.etat < 3 and pro == 1 %}
+            <form action="#" id="formUploadFacture" class="formUploadFacture" method="post" class="form-entreprise" enctype="multipart/form-data">
+                <input type="file" class="uploadFacture" id="uploadFacture" name="uploadFacture[]" accept=".doc,.docx,application/msword,.pdf">
+                <input type="text" id="numCommande" name="numCommande" value="{{ commande.idCommande }}" hidden>
+            </form>
+            {% endif %}
+            {% if commande.etat == 0 and pro == 1 %}
+                <input type="button" class="nouvelleEtape" value="Valider la prise en charge" data-numCommande="{{ commande.idCommande }}" data-etat="{{ commande.etat }}">
+            {% endif %}
+            {% if commande.etat == 1 and pro == 1 %}
+                <input type="button" class="nouvelleEtape" value="Valider le retrait de la commande" data-numCommande="{{ commande.idCommande }}" data-etat="{{ commande.etat }}">
+            {% endif %}
+            {% if commande.etat == 2 and pro == 1 %}
+                <input type="button" class="nouvelleEtape" value="Valider la réparation" data-numCommande="{{ commande.idCommande }}" data-etat="{{ commande.etat }}">
+            {% endif %}
+            {% if commande.etat == 3 and pro == 1 %}
+                <input type="button" class="nouvelleEtape" value="Valider la livraison de la commande" data-numCommande="{{ commande.idCommande }}" data-etat="{{ commande.etat }}">
+            {% endif %}
+            </br></br></br></br></br>
+        {% endfor %}
+    </body>
+</html>

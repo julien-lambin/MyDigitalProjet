@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>DoneIT</title>
+        <link rel="stylesheet" href="../src/style/css/dashboard.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" >
+    </head>
+    <body>
+      <header>
+      </header>
+        <section id="dashboard">
+          <h1>Commande en cours</h1>
+          <div class="champs">
+          <div id="search-cours">
+             <input class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search" size="20">
+          </div>
+          <div id="filtre-cours">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Filtre</option>
+              <option value="1">Pris en charge</option>
+              <option value="2">Non pris en charge</option>
+              <option value="3">Devis reçu</option>
+            </select>
+          </div>
+          </div>
+          <table id="cours"><!--commande en cours-->
+            <thead>
+              <tr>
+                <td>Infos commande</td>
+                <td>Infos d'appareil</td>
+                <td>Date</td>
+                <td>Infos prestataire</td>
+                <td>Montant</td>
+                <td>Etat de la commande</td>
+                <td>Documents</td>
+              </tr>
+            </thead>
+            <tbody>
+            {% for commande in listeCommandes %}
+            {% if commande.etat < 4 %}
+              <tr>
+                <td>N° Commande : {{ commande.idCommande }}</td>
+                <td>Type : {{ commande.categorie }}</br>
+                Marque : {{ commande.marque }}</br>
+                Reférence : {{ commande.reference }}</td>
+                <td>{{ commande.dateRetrait }}</td>
+                <td>{% if commande.emailReparateur != "0" %}{{ commande.emailReparateur }}{% else %}Commande non prise en charge{% endif %}</td>
+                <td>montant-infos</td>
+                <td>{% if commande.etat == "0" %}En attente de prise en charge{% elseif commande.etat == "1" %}Pris en charge{% elseif commande.etat == "2" %}En cours de répparation{% elseif commande.etat == "3" %}Votre appareil vas être livré{% endif %}</td>
+                <td>{% for image in commande.codeImage %}<img src="../commande_images/{{ image }}" width="100">{% endfor %}
+            {% if commande.etat < 3 and pro == 0 %}
+            <form action="#" name="formUploadImage" class="formUploadImage" method="post" class="form-entreprise" enctype="multipart/form-data">
+                <input type="file" class="uploadImage" name="uploadImage[]" accept="image/png, image/jpeg, image/gif" multiple>
+                <input type="text" name="numCommande" value="{{ commande.idCommande }}" hidden>
+            </form>
+            {% endif %}
+            {% if commande.etat >= 1 and commande.etat < 3 and pro == 1 %}
+            <form action="#" name="formUploadDevis" class="formUploadDevis" method="post" class="form-entreprise" enctype="multipart/form-data">
+                <label>Devis : </label><input type="file" class="uploadDevis" name="uploadDevis[]" accept=".doc,.docx,application/msword,.pdf">
+                <input type="text" name="numCommande" value="{{ commande.idCommande }}" hidden>
+            </form>
+            {% endif %}
+            {% if commande.etat >= 1 and commande.etat < 3 and pro == 1 %}
+            <form action="#" name="formUploadFacture" class="formUploadFacture" method="post" class="form-entreprise" enctype="multipart/form-data">
+                <label>Facture : </label><input type="file" class="uploadFacture" name="uploadFacture[]" accept=".doc,.docx,application/msword,.pdf">
+                <input type="text" name="numCommande" value="{{ commande.idCommande }}" hidden>
+            </form>
+            {% endif %}
+            {% if commande.etat == 0 and pro == 1 %}
+                <input type="button" class="nouvelleEtape" value="Valider la prise en charge" data-numCommande="{{ commande.idCommande }}" data-etat="{{ commande.etat }}">
+            {% endif %}
+            {% if commande.etat == 1 and pro == 1 %}
+                <input type="button" class="nouvelleEtape" value="Valider le retrait de la commande" data-numCommande="{{ commande.idCommande }}" data-etat="{{ commande.etat }}">
+            {% endif %}
+            {% if commande.etat == 2 and pro == 1 %}
+                <input type="button" class="nouvelleEtape" value="Valider la réparation" data-numCommande="{{ commande.idCommande }}" data-etat="{{ commande.etat }}">
+            {% endif %}
+            {% if commande.etat == 3 and pro == 1 %}
+                <input type="button" class="nouvelleEtape" value="Valider la livraison de la commande" data-numCommande="{{ commande.idCommande }}" data-etat="{{ commande.etat }}">
+            {% endif %}</td>
+              </tr>
+              {% endif %}
+            {% endfor %}
+            </tbody>
+          </table>
+          <h1>Commande terminée</h1>
+          <div class="champs">
+          <div id="search-time">
+             <input class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search" size="20">
+          </div>
+          <div id="filtre-time">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Filtre</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+          </div>
+          <table id="time"><!--contient les commandes en terminés-->
+              <tr>
+                  <table id="finish"><!--commande en terminés-->
+                    <thead>
+                      <tr>
+                        <td>Infos commande</td>
+                        <td>Infos appareil</td>
+                        <td>Date Livraison</td>
+                        <td>Infos prestataire</td>
+                        <td>Montant</td>
+                        <td>Etat de la commande</td>
+                        <td>Documents</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+            {% for commande in listeCommandes %}
+            {% if commande.etat >= 3 %}
+              <tr>
+                <td>N° Commande : {{ commande.idCommande }}</td>
+                <td>Type : {{ commande.categorie }}</br>
+                Marque : {{ commande.marque }}</br>
+                Reférence : {{ commande.reference }}</td>
+                <td>{{ commande.dateRetrait }}</td>
+                <td>{% if commande.emailReparateur != "" %}{{ commande.emailReparateur }}{% else %}Commande pas prise en charge{% endif %}</td>
+                <td>montant-infos</td>
+                <td>{% if commande.etat == "0" %}En attente de prise en charge{% elseif commande.etat == "1" %}Pris en charge{% elseif commande.etat == "2" %}En cours de répparation{% elseif commande.etat == "3" %}Votre appareil vas être livré{% endif %}</td>
+                <td>{% for image in commande.codeImage %}<img src="../commande_images/{{ image }}" width="100">{% endfor %}</td>
+              </tr>
+              {% endif %}
+            {% endfor %}
+                    </tbody>
+                  </table>
+              </tr>
+              <tr>
+              </tr>
+          </table>
+        </section>
+      <footer>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(".nouvelleEtape").click(function(){
+        
+        $(this).prop("disabled",true);
+
+        var numCommande = $(this).attr("data-numCommande");
+        var etatActuel = $(this).attr("data-etat");
+
+        $.ajax({
+           url : './modifEtatCmd.php',
+           type : 'POST',
+           data : { 
+                numCommande : numCommande, 
+                etatActuel : etatActuel 
+            },
+            success : function(statut){ // success est toujours en place, bien sûr !
+                location.reload();
+            },
+            error : function(jqXHR, textStatus, errorThrown){
+                alert(jqXHR+" "+textStatus+" "+errorThrown);
+            }
+        });
+    });
+
+
+        $(".uploadImage").change(function(){
+
+            //$(this).prop("disabled",true);
+            var form = $(this).closest(".formUploadImage").get(0);
+            var formulaire = new FormData(form);
+
+            $.ajax({
+                url : './uploadFileSuiviCommande.php',
+                type : 'POST',
+                data : formulaire,
+                processData: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                dataType : "json",
+                success : function(statut){ // success est toujours en place, bien sûr !
+                    $('.formUploadImage').trigger("reset");
+                },
+                error : function(resultat, statut, erreur){
+    
+                }
+        
+            });
+            
+        });
+
+
+        $(".uploadDevis").change(function(){
+            
+            //$(this).prop("disabled",true);
+            var form = $(this).closest(".formUploadDevis").get(0);
+            var formulaire = new FormData(form);
+        
+            $.ajax({
+                url : './uploadFileSuiviCommande.php',
+                type : 'POST',
+                data : formulaire,
+                processData: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                dataType : "json",
+                success : function(statut){ // success est toujours en place, bien sûr !
+                    $('.formUploadDevis').trigger("reset");
+                },
+                error : function(resultat, statut, erreur){
+    
+                }
+        
+            });
+            
+        });
+
+
+        $(".uploadFacture").change(function(){
+            
+            //$(this).prop("disabled",true);
+            var form = $(this).closest(".formUploadFacture").get(0);
+            var formulaire = new FormData(form);
+        
+            $.ajax({
+                url : './uploadFileSuiviCommande.php',
+                type : 'POST',
+                data : formulaire,
+                processData: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                dataType : "json",
+                success : function(statut){ // success est toujours en place, bien sûr !
+                    $('.formUploadFacture').trigger("reset");
+                },
+                error : function(resultat, statut, erreur){
+    
+                }
+        
+            });
+            
+        });
+    
+    </script>
+    
+    </body>

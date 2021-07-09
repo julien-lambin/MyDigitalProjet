@@ -1,0 +1,78 @@
+#dashboard
+{
+    margin-left: 50px;
+    width: 80%;
+    .champs
+    {
+        display: flex;
+        width: 100%;
+        margin-bottom: 25px;
+        #search-cours
+        {
+            margin-right: 20px;
+        }
+        #search-time
+        {
+            margin-right: 20px;
+        }
+    }
+    #cours
+    {
+        margin-bottom: 50px;
+        td
+        {
+            border: solid 2px;
+            border-color: white;
+        }
+        thead
+        {
+            background-color: #0d6efd;
+            color: white;
+            text-align: center;
+            height: 75px;
+        }
+        tbody
+        {
+            text-align: center;
+            td
+            {
+                width: 10%;
+                border: solid 2px;
+                border-color: black;
+                text-align: center;
+            }
+        }
+    }
+    #finish
+    {
+        margin-bottom: 50px;
+        table
+        {
+            border-radius: 50px;
+        }
+        td
+        {
+            
+            border: solid 2px;
+            border-color: white;
+            height: 50px;
+        }
+        thead
+        {
+            background-color: #b4c851;
+            color: white;
+            height: 75px;
+            text-align: center;
+        }
+        tbody
+        {
+            text-align: center;
+            td
+            {
+                width: 10%;
+                border: solid 2px;
+                border-color: black;
+            }
+        }
+    }
+}

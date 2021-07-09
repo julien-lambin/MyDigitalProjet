@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>DoneIT</title>
+        <link rel="stylesheet" href="../src/style/css/doneit.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" >
+    </head>
+    <body>
+        <header>
+        </header>
+        <input type="text" id="emailHidden" value="{{ session.prenomNom }}" hidden>
+        <form action="../models/addCommande.php" id="formAddCommande" method="post" class="form-commande" enctype="multipart/form-data">
+        <section id="welcome">
+            <div id="content">
+                <h3>
+                    Bienvenue
+                </h3>
+                <p>
+                    Bienvenue sur le site de Done it, vous avez besoin de faire réparer un électroménager en panne ? Nous nous chargeons du transport et de la réparation !
+                </p>
+                <div class="fields">
+                    <div id="list-devices">
+                        <div class="dropdown">
+                          <select name="categorie" id="categorieCommande" required>
+                            <option value="">Appareil à réparer</option>
+                            {% for categorie in listeCategories %}
+                                <option value="{{ categorie.nom }}">{{ categorie.nom }}</option>
+                            {% endfor %}
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="fields">
+                  <div id="address">
+                    <input type="text" id="adresseCommande" name="adresse" required minlength="4" maxlength="50" size="30" placeholder="Votre adresse..">
+                  </div>
+                  <div id="-fix-calendar">
+                      <input id="dateRetraitCommande" name="dateRetrait" type="date" value="2021-06-18" name="calendar">
+                  </div>
+                </div>
+                <div class="fields">
+                    <button type="button" id="clickinfos">
+                        <label>Prendre rendez-vous</label>
+                    </button>
+                </div>
+            </div>
+            <div id="photo">
+                <img class="animate__animated animate__fadeInRightBig" id="tel" src="../src/assets/visuel_banner_hp.svg" alt="tel">
+            </div>
+        </section>
+          <section id="fix-infos">
+            <div id="infos-content">
+              <h3>indiquez nous votre pannes</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+              </p>
+            </div>
+          <div id="fix-infos-content">
+            <div id="nature">
+                <select id="naturePanneCommande" name="naturePanne" class="form-select" aria-label="Default select example" name="btn-nature">
+                    <option selected>Nature de la panne</option>
+                    <option value="Ecran cassé">Ecran cassé</option>
+                    <option value="Ne s'allume plus">Ne s'allume plus</option>
+                    <option value="Problème d'affichage">Problème d'affichage</option>
+                    <option value="Problème avec les boutons">Problème avec les boutons</option>
+                  </select>
+            </div>
+            <div id="description">
+              <textarea id="precisionsCommande" name="precisions" placeholder="Précisez la nature de la panne en détails"></textarea>
+              <textarea id="marqueCommande" name="marque" placeholder="Marque de l'appareil"></textarea>
+              <textarea id="referenceCommande" name="reference" placeholder="Reference de l'appareil"></textarea>
+            </div>
+            <div id="adresse">
+              <!--affiche les infos récup dans les form donc la c'est du back-->
+            </div>
+          </div>
+          <button type="button" id="clickpaiement">
+            <label>Confirmer</label>
+          </button>
+          </section><!--end fix-infos-->
+          <section id="fix-paiement"><!--faire le js pour remplacer l'ancienne section-->
+            <div id="paiement">
+              <h3>Payer après l'intervention</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos obcaecati commodi labore nobis vitae illum amet mollitia quia ad.
+              </p>
+            </div>
+              <!--ajouter le logo de cb -->
+              <div id="num-card">
+                <label>numéro de carte</label>
+                <input type="number" name="numCarte" id="numCarteCommande"/>
+              </div>
+              <div id="card-infos">
+              <div id="date">
+                  <div id="-fix-calendar">
+                  <label>date de fin</label>
+                      <input id="dateFinCommande" name="dateFinCommande" type="date" value="2021-06-18" name="calendar">
+                  </div>
+                  </div>
+                <div>
+                  <label>CCV</label>
+                  <input name="ccv"type="number" name="CCV" id="CCVCommande" maxlength="3"/>
+                </div>
+              </div>
+              <div id="checkbox">
+                <div>
+                  <input type="checkbox" id="conditionsCommande" name="conditions">
+                  <label for="conditionsCommande">En validant, vous acceptez les conditions générales de ventes de</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="scales" name="newsletter">
+                  <label for="newsletter">Je souhaite recevoir la newsletter et les astuces d’experts de Done’It.</label>
+                </div>
+              </div>
+              <button type="button" id="clickconfirm">
+                <label>Régler</label>
+              </button>
+          </section><!--end fix-paiement-->
+        </form>
+          <section id="confirmation">
+            <div id="tittle-confirmation">
+              <h3>
+                Felicitation, votre rendez-vous est PRIS !
+              </h3>
+              <p>
+                Un récapitulatif viens de vous être envoyé par mai, vous recevrez un texto la veille de votre rendez-vous ! Vous pouvez modifier vos
+                informations jusqu’à 4 jours avant votre rendez-vous.
+              </p>
+            </div>
+            <div id="fix-infos-confirm">
+              <div id="left">
+                <h4 id="cmdAdresse">Adresse</h4>
+                <!--infos back-->
+                <h4 id="cmdAppareil">Appareil</h4>
+                <h4 id="cmdCrenaux">Crénaux</h4>
+              </div>
+              <div id="right">
+                <h4 id="cmdNaturePanne">Nature de la panne</h4>
+                {# <h4>Paiement</h4>
+                <h4>Total</h4> #}
+              </div>
+            </div>
+            <div id="buttons">
+              <button id="reloadAccueil" type="button">
+                Réparer un autre objet
+              </button>
+            </div>
+          </section><!--end confirmation-->
+          <section id="complement">
+            <h3>Preservez l’environnement et votre porte monnaie !</h3>
+            <div id="cards">
+              <div id="paiement">
+                <h4>Paiement 3x</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, quasi?</p>
+              </div>
+              <div id="when">
+                <h4>C'est quand vous voulez</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, asperiores!</p>
+              </div>
+              <div id="free">
+                <h4>Annulation gratuite</h4>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, unde!</p>
+              </div>
+            </div>
+          </section><!--end complement-->
+        <section id="infos">
+            <div id="card-list">
+                <div class="card">
+                    <div class="card-body">
+                        <img id="rouage" src="../src/assets/icon_rouage.svg" alt="logo-rouage">
+                      <h5 class="card-title">ANNULATION GRATUITE</h5>
+                      <p class="card-text">Vous pouvez annuler votre commande avant la prise en charge de votre appareil en panne.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img id="rouage" src="../src/assets/icon_certifie.svg" alt="logo-rouage">
+                      <h5 class="card-title">Des Réparatateurs Créatifs</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img id="rouage" src="../src/assets/icon_agenda.svg" alt="logo-rouage">
+                      <h5 class="card-title">DISPONIBLE 7J/7</h5>
+                      <p class="card-text">Nos réparateurs peuvent être disponibles 7 jours sur 7 pour venir récupérer vos appareils.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img id="rouage" src="../src/assets/icon_money.svg" alt="logo-rouage">
+                      <h5 class="card-title">Paiement Après Intervention</h5>
+                      <p class="card-text">Vous payez de manière simple et sécurisé lorsque votre appareil a été réparé.</p>
+                    </div>
+                </div>
+            </div>
+            <button id="repair">
+                <label>Réparer mon objet</label>
+            </button>
+        </section>
+        <section id="eco-friendly">
+            <div id="alignment-eco">
+                <div id="content-eco">
+                    <h1>
+                        ECO FRIENDLY
+                    </h1>
+                    <p>
+                        La réparation de vos appareils favorisent la protection de l’environnement et vous fait faire des économies.
+                    </p>
+                    <button>
+                        <label>En savoir plus</label>
+                    </button>
+                </div>
+                <div id="picture-eco"></div>
+            </div>
+            <div id="alignment-partner">
+                <div id="picture-partner"></div>
+                <div id="content-partner">
+                    <h1>
+                        DEVENIR REPARATEUR/LIVREUR
+                    </h1>
+                    <p>
+                        Vous souhaitez devenir réparateur Done It autour de chez vous </br>N’hésitez pas à consulter notre page d’inscription.
+                    </p>
+                    <button>
+                        <label>Devenir réparateur</label>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="newsletter">
+        <div id="content">
+            <h3>
+                NOTRE NEWSLETTER
+            </h3>
+            <p>
+                Pour recevoir l’intégralité de nos avantages ou nos promotions, n’hésitez pas à vous inscrire à notre Newsletter.
+            </p>
+            <div id="mail">
+                <input type="email" id="email" pattern=".+@globex.com" size="30" required placeholder="Mon mail">
+            </div>
+        </div>
+        <div id="picture">
+            <img id="newsletter-logo" src="../src/assets/visuel_newsletter.svg" alt="logo-newsletter">
+        </div>
+    </section>
+    <section id="notice">
+        <div class="notice">
+            <div class="stars">
+                <div class="rating"><!--
+                --><a href="#5" title="Donner 5 étoiles">☆</a><!--
+                --><a href="#4" title="Donner 4 étoiles">☆</a><!--
+                --><a href="#3" title="Donner 3 étoiles">☆</a><!--
+                --><a href="#2" title="Donner 2 étoiles">☆</a><!--
+                 --><a href="#1" title="Donner 1 étoile">☆</a>
+                </div>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit qui nobis, totam veniam vero architecto!
+            </p>
+        </div>
+        <div class="notice">
+            <div class="stars">
+                <div class="rating"><!--
+                --><a href="#5" title="Donner 5 étoiles">☆</a><!--
+                --><a href="#4" title="Donner 4 étoiles">☆</a><!--
+                --><a href="#3" title="Donner 3 étoiles">☆</a><!--
+                --><a href="#2" title="Donner 2 étoiles">☆</a><!--
+                --><a href="#1" title="Donner 1 étoile">☆</a>
+                </div>
+            </div>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta facere non explicabo laudantium similique sed.
+            </p>
+        </div>
+        <div class="notice">
+            <div class="stars">
+                <div class="rating"><!--
+                --><a href="#5" title="Donner 5 étoiles">☆</a><!--
+                --><a href="#4" title="Donner 4 étoiles">☆</a><!--
+                --><a href="#3" title="Donner 3 étoiles">☆</a><!--
+                --><a href="#2" title="Donner 2 étoiles">☆</a><!--
+                --><a href="#1" title="Donner 1 étoile">☆</a>
+                </div>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima eaque et doloremque aperiam eius molestias!
+            </p>
+        </div>
+    </section>
+    <footer>
+        <div id="network">
+            <img id="network-logos" src="../src/assets/icon_reseaux_fb_tw_In.svg" alt="logo-network">
+        </div>
+    </footer>
+
+    <script>
+
+          var clickfix = document.getElementById("clickfix");
+          var clickinfos = document.getElementById("clickinfos");
+          var clickpaiement = document.getElementById("clickpaiement");
+          var clickconfirm = document.getElementById("clickconfirm");
+          var welcome = document.getElementById("welcome");
+          var infos = document.getElementById("fix-infos");
+          var paiement = document.getElementById("fix-paiement");
+          var confirmation = document.getElementById("confirmation");
+        
+        $("#clickinfos").on("click", function() {
+
+          if($("#emailHidden").val() != ""){
+
+            if($("#categorieCommande").val() == ""){
+              $("#categorieCommande").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#categorieCommande").css("border", "none");
+            }
+            
+            if($("#adresseCommande").val() == ""){
+              $("#adresseCommande").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#adresseCommande").css("border", "none");
+            }
+
+           if($("#dateRetraitCommande").val() == ""){
+              $("#dateRetraitCommande").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#dateRetraitCommande").css("border", "none");
+            }
+
+            if($("#categorieCommande").val() != "" && $("#adresseCommande").val() != "" && $("#dateRetraitCommande").val() != ""){
+
+            infos.style.display = "block";
+            welcome.style.display = "none";
+            }
+
+          }else{
+            $("#exampleModal").modal("show");
+          }
+        });
+          
+          function showPaiement()
+          {
+
+            if($("#naturePanneCommande").val() == ""){
+              $("#naturePanneCommande").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#naturePanneCommande").css("border-style", "none");
+            }
+
+            if($("#precisionsCommande").val() == ""){
+              $("#precisionsCommande").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#precisionsCommande").css("border-style", "none");
+            }
+
+            if($("#marqueCommande").val() == ""){
+              $("#marqueCommande").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#marqueCommande").css("border-style", "none");
+            }
+
+            if($("#referenceCommande").val() == ""){
+              $("#referenceCommande").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#referenceCommande").css("border-style", "none");
+            }
+
+          if($("#naturePanneCommande").val() != "" && $("#precisionsCommande").val() != "" && $("#marqueCommande").val() != "" && $("#referenceCommande").val() != ""){
+
+            infos.style.display = "none";
+            paiement.style.display = "block";
+          }
+          };
+          function showConfirm()
+          {
+
+            if($("#numCarteCommande").val() == ""){
+              $("#numCarteCommande").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#numCarteCommande").css("border-style", "none");
+            }
+
+            if($("#dateFinCommande").val() == ""){
+              $("#dateFinCommande").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#dateFinCommande").css("border-style", "none");
+            }
+
+            if($("#CCVCommande").val() == ""){
+              $("#CCVCommande").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#CCVCommande").css("border-style", "none");
+            }
+
+            if($('#conditionsCommande').prop('checked') == false){
+              $("#conditionsCommande").css({'outline-color': 'red', 'outline-style': 'solid'});
+            }else{
+              $("#conditionsCommande").css("outline-style", "none");
+            }
+
+            if($("#numCarteCommande").val() != "" && $("#dateFinCommande").val() != "" && $("#CCVCommande").val() != "" && $('#conditionsCommande').prop('checked') == true){
+
+            $.ajax({
+                url : '../models/addCommande.php',
+                type : 'POST',
+                data : $("#formAddCommande").serialize(),
+                success : function(statut){
+
+                  $("#cmdAdresse").html("Adresse : " + $("#adresseCommande").val());
+                  $("#cmdAppareil").html("Appareil : " + $("#categorieCommande").val());
+                  $("#cmdCrenaux").html("Crénaux : " + $("#dateRetraitCommande").val());
+                  $("#cmdNaturePanne").html("Nature de la Panne : " + $("#naturePanneCommande").val());
+
+                    paiement.style.display = "none";
+                    confirmation.style.display = "block";
+                },
+                error : function(resultat, statut, erreur){
+                    alert("Erreur lors de l'envoi des données");
+                }
+        
+            });
+            
+            }
+          };
+
+          $("#reloadAccueil").on("click", function() {
+
+            location.reload();
+
+          });
+
+
+          clickpaiement.onclick = showPaiement;
+          clickconfirm.onclick = showConfirm;
+    </script>
+    </body>
+</html>

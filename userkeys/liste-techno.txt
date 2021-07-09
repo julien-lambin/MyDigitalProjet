@@ -1,0 +1,14 @@
+php
+html
+css/sass
+wamp
+send mail
+recapcha
+mysql/mariadb
+phpmyadmin
+bootstrap
+twig
+JQuery
+Ajax
+
+un hébergeur

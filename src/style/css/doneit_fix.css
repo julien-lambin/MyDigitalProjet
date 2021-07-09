@@ -1,0 +1,222 @@
+#container {
+  margin-top: 20px;
+}
+#container ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+#container ul #logo {
+  margin-right: 300px;
+  margin-left: 100px;
+}
+#container ul #search {
+  margin-right: 200px;
+}
+#container ul .link {
+  margin-right: 100px;
+  margin-top: 7px;
+}
+#container ul .link a {
+  text-decoration: none;
+}
+#container ul #menu {
+  width: 50px;
+  margin-left: 200px;
+}
+#container ul #menu #circle {
+  appearance: none;
+  width: 60px;
+  height: 60px;
+  vertical-align: top;
+}
+#container ul li {
+  list-style-type: none;
+}
+
+#logo {
+  width: 100px;
+  height: 50px;
+  background-image: url("../../img/logo.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: green;
+  margin-bottom: 15px;
+}
+
+#welcome {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: #1d4663;
+  color: white;
+}
+#welcome #content {
+  margin-left: 200px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 100px;
+}
+#welcome #content h3 {
+  color: #b4c851;
+}
+#welcome #content .fields {
+  margin-bottom: 15px;
+}
+#welcome #content .fields #RDV {
+  color: white;
+  background-color: #b4c851;
+  border-radius: 50px;
+  border: none;
+  height: 40px;
+  width: 200px;
+}
+#welcome #content .fields #list-devices .btn {
+  border-radius: 50px;
+  background-color: white;
+  color: black;
+}
+#welcome #content .fields #address input {
+  border-radius: 50px;
+  background-color: white;
+  color: black;
+  width: 200px;
+}
+#welcome #content p {
+  width: 300px;
+  margin-bottom: 50px;
+}
+#welcome #photo {
+  width: 500px;
+}
+
+/***************/
+#fix {
+  display: none;
+  height: 600px;
+  margin-left: 100px;
+}
+#fix #fix-content {
+  margin-bottom: 100px;
+}
+#fix #fix-saisie {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+
+#fix-infos {
+  display: none;
+  margin-left: 100px;
+  height: 500px;
+}
+#fix-infos #infos-content {
+  margin-bottom: 50px;
+}
+#fix-infos #nature {
+  width: 75px;
+}
+#fix-infos #fix-infos-content {
+  display: flex;
+  justify-content: space-around;
+  height: 300px;
+}
+#fix-infos nav {
+  width: 150px;
+}
+#fix-infos #description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#fix-paiement {
+  display: none;
+  margin-left: 100px;
+  height: 600px;
+}
+#fix-paiement #paiement {
+  margin-bottom: 100px;
+}
+#fix-paiement #num-card {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+#fix-paiement #card-infos {
+  display: flex;
+}
+#fix-paiement #date, #fix-paiement #CCV {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+}
+#fix-paiement #checkbox {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+#fix-paiement #fix-infos-confirm {
+  display: flex;
+  margin-bottom: 50px;
+}
+#fix-paiement #left {
+  display: flex;
+  flex-direction: column;
+  margin-right: 150px;
+}
+
+#confirmation {
+  display: none;
+}
+#confirmation #tittle-confirmation {
+  margin-bottom: 75px;
+}
+#confirmation #confirmation {
+  margin-left: 100px;
+  height: 300px;
+  margin-bottom: 50px;
+}
+#confirmation #change {
+  margin-right: 50px;
+}
+
+#complement {
+  display: none;
+  margin-left: 100px;
+  width: 100%;
+}
+#complement #cards {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 150px;
+  margin-top: 50px;
+}
+#complement #paiement {
+  border: 1px solid;
+  width: 20%;
+  height: 20%;
+}
+#complement #free {
+  border: 1px solid;
+  width: 20%;
+  height: 20%;
+}
+#complement #when {
+  border: 1px solid;
+  width: 20%;
+  height: 20%;
+}
+
+/*# sourceMappingURL=doneit_fix.css.map */

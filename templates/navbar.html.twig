@@ -1,0 +1,660 @@
+
+        <link rel="stylesheet" href="../src/style/css/doneit.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <div class="menu">
+            <div id="container">
+            <ul>
+                <div id="logo">
+                <a href="./accueil.php">
+                    <img src="../src/assets/logo.PNG" alt="logo">
+                </a>
+                </div>
+                <li id="search">
+                    <form class="form-inline">
+                        <input class="form-control" type="search" placeholder="Chercher" aria-label="Search">
+                    </form>
+                </li>
+                <input type="text" id="verifSession" value="{{ session.prenomNom }}" hidden>
+                <li class="link"><a href="default.asp">Découvrir</a></li>
+                <li class="link"><a href="./accueil.php">Faire réparer</a></li>
+                <li class="link" id="lienSuiviCommandes"><a href="#">Suivi des commandes</a></li>
+                <li  id="menu" class="nav-item dropdown">
+                    <a id="circle" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="404.html">Découvrir</a>
+                        <a class="dropdown-item" href="404.html">Valeur & Missions</a>
+                        <a class="dropdown-item" href="./accueil.php">Faire Réparer</a>
+                        <a class="dropdown-item" href="404.html">Devenir Partenaire</a>
+                        <a class="dropdown-item" href="404.html">FAQ</a>
+                        <a class="dropdown-item" href="404.html">BLOG</a>
+                        <a class="dropdown-item" href="404.html">Langue</a>
+                        {% if session.prenomNom is not defined %}
+                            <a>
+                                <button type="button" id="connexion" class="btn">Connexion</button>
+                            </a>
+                            <a>
+                                <button type="button" id="inscription" class="btn">S'inscrire</button>
+                            </a>
+                            <a>
+                                <button type="button" id="inscriptionPro" class="btn">Inscription Pro</button>
+                            </a>
+                        {% else %}
+                            <a class="dropdown-item" href="deconnexion.php">Déconnexion</a>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+            </div>
+        </div><!--fin du menu-->
+
+        <div class="modal fade" id="exampleModalCo" tabindex="-1" aria-labelledby="exampleModalLabelCo" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+              <form action="#" id="formConnexion" method="post" class="form-inscription">
+                <div id="form-fields">
+                    <input type="text" id="emailCo" name="email" required minlength="4" maxlength="30" size="20" placeholder="Email">
+                    <input type="password" id="passwordCo" name="password" required minlength="4" maxlength="20" size="20" placeholder="Password">
+                    <button type="button" id="validConnexion" class="btn">Connexion</button>
+                </div>
+            </form>
+              </div>
+            </div>
+          </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--inscription-->
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <form action="#" id="formInscription" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="recaptchaResponse" name="recaptcha-response">
+                    <div id="form-particular">
+                        <main>
+                            <div class="stepper">
+                            <div class="step--1 step-active">Etape 1</div>
+                            <div class="step--2">Etape 2</div>
+                            <div class="step--3">Etape 3</div>
+                            <div class="step--4">Terminé</div>
+                            </div>
+                            <div class="form form-active">
+                            <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                Inscription
+                                </h1>
+
+                                <p class="form--header-text">
+                                Toutes les informations sont obligatoires
+                                </p>
+                            </div>
+                            <input type="text" id="email" name="email" placeholder="Email" />
+                            <input type="password" id="passwordInscription" name="password" placeholder="Password" />
+                            <button class="form__btn" id="btn-1">Suivant</button>
+                            </div>
+                            <div class="form">
+                            <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                Informations personnel
+                                </h1>
+                                <p class="form--header-text">
+                                Toutes les informations sont obligatoires
+                                </p>
+                            </div>
+                            <input type="text" id="nom" name="nom" placeholder="Nom" />
+                            <input type="text" id="prenom" name="prenom" placeholder="Prénom" />
+                            <input type="password" id="passwordConfirm" name="passwordConfirm" placeholder="Confirmation du mot de passe" />
+                            <button class="form__btn" id="btn-2-prev">Précédent</button><!--pourquoi il fait bug ?-->
+                            <button class="form__btn" id="btn-2-next">Suivant</button>
+                            </div>
+                            <div class="form">
+                            <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                Informations personnel
+                                </h1>
+
+                                <p class="form--header-text">
+                                Toutes les informations sont obligatoires
+                                </p>
+                            </div>
+                            <input type="text" id="tel" name="tel" placeholder="Téléphone" minlength="10" maxlength="10"/>
+                            <input type="text" id="adresse" name="adresse" placeholder="Adresse" />
+                            <input type="text" id="ville" name="ville" placeholder="Ville" />
+                            <input type="text" id="codePostal" name="codePostal" placeholder="Code postal" />
+                            <button class="form__btn" id="btn-3-prev">Précédent</button><!--pourquoi il fait bug ?-->
+                            <button class="form__btn" id="btn-3-next">Créer mon compte</button>
+                            </div>
+                            <div class="form">
+                                <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                    Bienvenue
+                                </h1>
+
+                                </div>
+                                <p class="form--header-text">
+                                    Votre compte à été créé avec succès
+                                </p>
+                                <!--ajouter pour joindre les fichiers-->
+                          
+                                <button class="form__btn" id="btn-4-next">Revenir à l'accueil</button>
+                            </div>
+                            <div class="form--message"></div>
+                        </main>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div><!--end formulaire d'inscription-->
+
+        <div class="modal fade" id="exampleModalPro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--inscription-->
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <form action="#" id="formInscriptionPro" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="recaptchaResponsePro" name="recaptcha-response">
+                    <div id="form-particular">
+                        <main>
+                            <div class="stepper">
+                            <div class="step--1 step-active pro">Etape 1</div>
+                            <div class="step--2 pro">Etape 2</div>
+                            <div class="step--3 pro">Etape 3</div>
+                            <div class="step--4 pro">Etape 4</div>
+                            <div class="step--5 pro">Terminé</div>
+                            </div>
+                            <div class="form form-active">
+                            <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                Inscription
+                                </h1>
+
+                                <p class="form--header-text">
+                                Toutes les informations sont obligatoires
+                                </p>
+                            </div>
+                            <input type="text" id="emailPro" name="email" placeholder="Email" />
+                            <input type="password" id="passwordInscriptionPro" name="password" placeholder="Password" />
+                            <button class="form__btn" id="btnPro-1">Suivant</button>
+                            </div>
+                            <div class="form">
+                            <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                Informations personnel
+                                </h1>
+                                <p class="form--header-text">
+                                Toutes les informations sont obligatoires
+                                </p>
+                            </div>
+                            <input type="text" id="nomPro" name="nom" placeholder="Nom" />
+                            <input type="text" id="prenomPro" name="prenom" placeholder="Prénom" />
+                            <input type="password" id="passwordConfirmPro" name="passwordConfirm" placeholder="Confirmation du mot de passe" />
+                            <button class="form__btn" id="btnPro-2-prev">Précédent</button><!--pourquoi il fait bug ?-->
+                            <button class="form__btn" id="btnPro-2-next">Suivant</button>
+                            </div>
+                            <div class="form">
+                            <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                Informations personnel
+                                </h1>
+
+                                <p class="form--header-text">
+                                Toutes les informations sont obligatoires
+                                </p>
+                            </div>
+                            <input type="text" id="telPro" name="tel" placeholder="Téléphone" minlength="10" maxlength="10"/>
+                            <input type="text" id="adressePro" name="adresse" placeholder="Adresse" />
+                            <input type="text" id="villePro" name="ville" placeholder="Ville" />
+                            <input type="text" id="codePostalPro" name="codePostal" placeholder="Code postal" />
+                            <button class="form__btn" id="btnPro-3-prev">Précédent</button><!--pourquoi il fait bug ?-->
+                            <button class="form__btn" id="btnPro-3-next">Suivant</button>
+                            </div>
+                            <div class="form">
+                                <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                    Informations entreprise
+                                </h1>
+                                <p class="form--header-text">
+                                    Toutes les informations sont obligatoires
+                                </p>
+                                </div>
+                                <input type="text" id="materielPro" name="meteriel" placeholder="Type de matériel"/>
+                                <input type="text" id="siretPro" name="siret" placeholder="Numéro de siret" />
+                                <!--ajouter pour joindre les fichiers-->
+                                <button class="form__btn" id="btnPro-4-prev">Précédent</button>
+                                <button class="form__btn" id="btnPro-4-next">Créer mon compte</button>
+                            </div>
+                            <div class="form">
+                                <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                    Bienvenue
+                                </h1>
+
+                                </div>
+                                <p class="form--header-text">
+                                    Votre compte à été créé avec succès
+                                </p>
+                                <!--ajouter pour joindre les fichiers-->
+                          
+                                <button class="form__btn" id="btnPro-5-next">Revenir à l'accueil</button>
+                            </div>
+                            <div class="form--message"></div>
+                        </main>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div><!--end formulaire d'inscription-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+            <script src="https://www.google.com/recaptcha/api.js?render=6LdsjloaAAAAAO4wUm8YNXVqgkxBGvV5Dc-1SjZn"></script>
+            <script>
+
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LdsjloaAAAAAO4wUm8YNXVqgkxBGvV5Dc-1SjZn', {action: 'homepage'}).then(function(token) {
+                        document.getElementById('recaptchaResponse').value = token
+                    });
+                });
+
+            </script>
+
+    <script>
+        const formBtn1 = document.querySelector("#btn-1")
+        const formBtnPrev2 = document.querySelector("#btn-2-prev")
+        const formBtnNext2 = document.querySelector("#btn-2-next")
+        const formBtnPrev3 = document.querySelector("#btn-3-prev")
+        const formBtnNext3 = document.querySelector("#btn-3-next")
+        const formBtnNext4 = document.querySelector("#btn-4-next")
+
+        // Button listener of form 1
+        formBtn1.addEventListener("click", function(e) {
+            var password = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,55})$/;
+            var email = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+
+            if($("#email").val() == ""){
+              $("#email").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+                if(!email.test($("#email").val())){
+                    $("#email").css({'border-color': 'red', "border-style":"solid"});
+                    alert("Le format de l'addresse mail n'est pas correct !");
+                }else{
+                    $("#email").css("border", "none");
+                }
+              
+            }
+
+
+            if($("#passwordInscription").val() == ""){
+              $("#passwordInscription").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+                if(!password.test($("#passwordInscription").val())){
+                    $("#passwordInscription").css({'border-color': 'red', "border-style":"solid"});
+                    alert("Le mot de passe doit contenir au moins 8 caractères, 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spéciaux");
+                }else{
+                    $("#passwordInscription").css("border", "none");
+                }
+            }
+
+            if($("#email").val() != "" && $("#passwordInscription").val() != "" && password.test($("#passwordInscription").val()) && email.test($("#email").val())){
+                gotoNextForm(formBtn1, formBtnNext2, 1, 2)
+            }
+        e.preventDefault()
+        })
+        // Next button listener of form 2
+        formBtnNext2.addEventListener("click", function(e) {
+
+            if($("#nom").val() == ""){
+              $("#nom").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#nom").css("border", "none");
+            }
+
+
+            if($("#prenom").val() == ""){
+              $("#prenom").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#prenom").css("border", "none");
+            }
+
+            if($("#passwordConfirm").val() == ""){
+              $("#passwordConfirm").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+                if($("#passwordConfirm").val() != $("#passwordInscription").val()){
+                    $("#passwordConfirm").css({'border-color': 'red', "border-style":"solid"});
+                }else{
+                    $("#passwordConfirm").css("border", "none");
+                }
+              
+            }
+
+
+            if($("#nom").val() != "" && $("#prenom").val() != "" && $("#passwordConfirm").val() != "" && $("#passwordConfirm").val() == $("#passwordInscription").val()){
+                gotoNextForm(formBtnNext2, formBtnNext3, 2, 3)
+            }
+        e.preventDefault()
+        })
+        // Previous button listener of form 2
+        formBtnPrev2.addEventListener("click", function(e) {
+        gotoNextForm(formBtnPrev2, formBtn1, 2, 1)
+        e.preventDefault()
+        })
+        // Next button listener of form 3
+        formBtnNext3.addEventListener("click", function(e) {
+
+            if($("#tel").val() == ""){
+              $("#tel").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#tel").css("border", "none");
+            }
+
+            if($("#adresse").val() == ""){
+              $("#adresse").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#adresse").css("border", "none");
+            }
+
+            if($("#ville").val() == ""){
+              $("#ville").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#ville").css("border", "none");
+            }
+
+            if($("#codePostal").val() == ""){
+              $("#codePostal").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#codePostal").css("border", "none");
+            }
+
+            if($("#tel").val() != "" && $("#adresse").val() != "" && $("#ville").val() != "" && $("#codePostal").val() != ""){
+
+                if($('#exampleModal').hasClass('show')){
+                    $.ajax({
+                        url : '../models/inscription.php',
+                        type : 'POST',
+                        data : $("#formInscription").serialize(),
+                        success : function(statut){
+                            if(statut == "erreurMail"){
+                                alert("Votre adresse mail n'est pas correcte !");
+                            }else if(statut == "telUse"){
+                                alert("Numéro de téléphone déjà utilisé !");
+                            }else if(statut == "mailUse"){
+                                alert("Adresse mail déjà utilisé !");
+                            }else if(statut == "erreurPassword"){
+                                alert("Votre mot de passe n'est pas correcte !");
+                            }else if(statut == 0){
+                                alert("Certain champs n'ont pas été saisie !");
+                            }else{
+                                gotoNextForm(formBtnNext3, formBtnNext4, 3, 4);
+                            }
+                        },
+                        error : function(resultat, statut, erreur){
+                            alert("Erreur lors de l'envoi des données");
+                        }
+                
+                    });
+                }else{
+                    gotoNextForm(formBtnNext3, formBtnNext4, 3, 4);
+                }
+
+
+            }
+        e.preventDefault()
+        })
+
+        formBtnPrev3.addEventListener("click", function(e) {
+        gotoNextForm(formBtnPrev3, formBtnPrev2, 3, 2)
+        e.preventDefault()
+        })
+        // Button listener of form 4
+        formBtnNext4.addEventListener("click", function(e) {
+            location.reload();
+        e.preventDefault()
+        })
+        const gotoNextForm = (prev, next, stepPrev, stepNext) => {
+         // Get form through the button
+        const prevForm = prev.parentElement
+        const nextForm = next.parentElement
+        const nextStep = document.querySelector(`.step--${stepNext}`)
+        const prevStep = document.querySelector(`.step--${stepPrev}`)
+        // Add active/inactive classes to both previous and next form
+        nextForm.classList.add("form-active")
+        nextForm.classList.add("form-active-animate")
+        prevForm.classList.add("form-inactive")
+        // Change the active step element
+        prevStep.classList.remove("step-active")
+        nextStep.classList.add("step-active")
+        // Remove active/inactive classes to both previous an next form
+        setTimeout(() => {
+            prevForm.classList.remove("form-active")
+            prevForm.classList.remove("form-inactive")
+            nextForm.classList.remove("form-active-animate")
+        }, 1000)
+        }
+
+
+        //Inscription PRO------------------
+        const formBtnPro1 = document.querySelector("#btnPro-1")
+        const formBtnProPrev2 = document.querySelector("#btnPro-2-prev")
+        const formBtnProNext2 = document.querySelector("#btnPro-2-next")
+        const formBtnProPrev3 = document.querySelector("#btnPro-3-prev")
+        const formBtnProNext3 = document.querySelector("#btnPro-3-next")
+        const formBtnProNext4 = document.querySelector("#btnPro-4-next")
+
+        // Button listener of form 1
+        formBtnPro1.addEventListener("click", function(e) {
+            var password = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,55})$/;
+            var email = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+
+            if($("#emailPro").val() == ""){
+              $("#emailPro").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+                if(!email.test($("#emailPro").val())){
+                    $("#emailPro").css({'border-color': 'red', "border-style":"solid"});
+                    alert("Le format de l'addresse mail n'est pas correct !");
+                }else{
+                    $("#emailPro").css("border", "none");
+                }
+              
+            }
+
+
+            if($("#passwordInscriptionPro").val() == ""){
+              $("#passwordInscriptionPro").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+                if(!password.test($("#passwordInscriptionPro").val())){
+                    $("#passwordInscriptionPro").css({'border-color': 'red', "border-style":"solid"});
+                    alert("Le mot de passe doit contenir au moins 8 caractères, 1 minuscule, 1 majuscule, 1 chiffre et 1 caractère spéciaux");
+                }else{
+                    $("#passwordInscriptionPro").css("border", "none");
+                }
+            }
+
+            if($("#emailPro").val() != "" && $("#passwordInscriptionPro").val() != "" && password.test($("#passwordInscriptionPro").val()) && email.test($("#emailPro").val())){
+
+                gotoNextFormPro(formBtnPro1, formBtnProNext2, 1, 2)
+            }
+        e.preventDefault()
+        })
+        // Next button listener of form 2
+        formBtnProNext2.addEventListener("click", function(e) {
+
+            if($("#nomPro").val() == ""){
+              $("#nomPro").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#nomPro").css("border", "none");
+            }
+
+
+            if($("#prenomPro").val() == ""){
+              $("#prenomPro").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#prenomPro").css("border", "none");
+            }
+
+            if($("#passwordConfirmPro").val() == ""){
+              $("#passwordConfirmPro").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+                if($("#passwordConfirmPro").val() != $("#passwordInscription").val()){
+                    $("#passwordConfirmPro").css({'border-color': 'red', "border-style":"solid"});
+                }else{
+                    $("#passwordConfirmPro").css("border", "none");
+                }
+              
+            }
+
+
+            if($("#nomPro").val() != "" && $("#prenomPro").val() != "" && $("#passwordConfirmPro").val() != "" && $("#passwordConfirmPro").val() == $("#passwordInscriptionPro").val()){
+                gotoNextFormPro(formBtnProNext2, formBtnProNext3, 2, 3)
+            }
+        e.preventDefault()
+        })
+        // Previous button listener of form 2
+        formBtnPrev2.addEventListener("click", function(e) {
+        gotoNextFormPro(formBtnProPrev2, formBtnPro1, 2, 1)
+        e.preventDefault()
+        })
+        // Next button listener of form 3
+        formBtnProNext3.addEventListener("click", function(e) {
+
+            if($("#telPro").val() == ""){
+              $("#telPro").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#telPro").css("border", "none");
+            }
+
+            if($("#adressePro").val() == ""){
+              $("#adressePro").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#adressePro").css("border", "none");
+            }
+
+            if($("#villePro").val() == ""){
+              $("#villePro").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#villePro").css("border", "none");
+            }
+
+            if($("#codePostalPro").val() == ""){
+              $("#codePostalPro").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#codePostalPro").css("border", "none");
+            }
+
+            if($("#telPro").val() != "" && $("#adressePro").val() != "" && $("#villePro").val() != "" && $("#codePostalPro").val() != ""){
+
+                    // $.ajax({
+                    //     url : '../models/inscription.php',
+                    //     type : 'POST',
+                    //     data : $("#formInscription").serialize(),
+                    //     success : function(statut){
+                    //         if(statut == "erreurMail"){
+                    //             alert("Votre adresse mail n'est pas correcte !");
+                    //         }else if(statut == "erreurPassword"){
+                    //             alert("Votre mot de passe n'est pas correcte !");
+                    //         }else if(statut == 0){
+                    //             alert("Certain champs n'ont pas été saisie !");
+                    //         }else{
+                    //             gotoNextFormPro(formBtnProNext3, formBtnProNext4, 3, 4);
+                    //         }
+                    //     },
+                    //     error : function(resultat, statut, erreur){
+                    //         alert("Erreur lors de l'envoi des données");
+                    //     }
+                
+                    // });
+
+
+            }
+        e.preventDefault()
+        })
+
+        formBtnProPrev3.addEventListener("click", function(e) {
+        gotoNextForm(formBtnProPrev3, formBtnProPrev2, 3, 2)
+        e.preventDefault()
+        })
+        // Button listener of form 4
+        formBtnProNext4.addEventListener("click", function(e) {
+            location.reload();
+        e.preventDefault()
+        })
+        const gotoNextFormPro = (prev, next, stepPrev, stepNext) => {
+         // Get form through the button
+        const prevFormPro = prev.parent();
+        const nextFormPro = next.parent();
+        const nextStepPro = $(`.step--${stepNext} .pro`);
+        const prevStepPro = $(`.step--${stepPrev} .pro`);
+        // Add active/inactive classes to both previous and next form
+        nextFormPro.classList.add("form-active")
+        nextFormPro.classList.add("form-active-animate")
+        prevFormPro.classList.add("form-inactive")
+        // Change the active step element
+        prevStepPro.classList.remove("step-active")
+        nextStepPro.classList.add("step-active")
+        // Remove active/inactive classes to both previous an next form
+        setTimeout(() => {
+            prevFormPro.classList.remove("form-active")
+            prevFormPro.classList.remove("form-inactive")
+            nextFormPro.classList.remove("form-active-animate")
+        }, 1000)
+        }
+
+
+    $("#connexion").on("click", function() {
+
+        $("#exampleModalCo").modal("show");
+
+    });
+
+    $("#inscription").on("click", function() {
+
+        $("#exampleModal").modal("show");
+
+    });
+
+    $("#inscriptionPro").on("click", function() {
+
+        $("#exampleModalPro").modal("show");
+
+    });
+    $("#lienSuiviCommandes").on("click", function() {
+
+        if($("#verifSession").val() == ""){
+            $("#exampleModalCo").modal("show");
+        }else{
+            window.location.href = "http://localhost/doneit/Controllers/suivi_commandes.php";
+        }
+
+    });
+    $("#validConnexion").on("click", function() {
+
+            if($("#emailCo").val() == ""){
+              $("#emailCo").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#emailCo").css("border", "none");
+            }
+
+            if($("#passwordCo").val() == ""){
+              $("#passwordCo").css({'border-color': 'red', "border-style":"solid"});
+            }else{
+              $("#passwordCo").css("border", "none");
+            }
+
+            if($("#emailCo").val() != "" && $("#passwordCo").val() != ""){
+
+                        $.ajax({
+                        url : '../models/connexion.php',
+                        type : 'POST',
+                        data : $("#formConnexion").serialize(),
+                        success : function(statut){
+                            if(statut == "0"){
+                                alert("Mot de passe incorrect !");
+                            }else{
+                                location.reload();
+                            }
+                        },
+                        error : function(resultat, statut, erreur){
+                            alert("Erreur lors de l'envoi des données");
+                        }
+                
+                    });
+                }
+        });
+    </script>

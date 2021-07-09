@@ -1,0 +1,23 @@
+cas d'utilisations :
+
+
+client 
+-rechercher un établissement 
+-obtenir les bonnes informations
+-etre mit en relation avec un conseillé 
+-passer commandes 
+-avoir un suivit de la commande
+
+livreur
+-acceder a l'adresse de commande
+-acceder au numero de produit 
+
+structure
+-associer le bon client avec le bon produit 
+-bien rediriger le client vers les bons conseillés
+-associer le bon livreur avec le bon produits et bonne adresse
+
+autre 
+connexion 
+inscription 
+commande

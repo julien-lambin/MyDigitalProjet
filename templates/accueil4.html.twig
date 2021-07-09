@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>DoneIT</title>
+        <link rel="stylesheet" href="../src/style/css/doneit.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" >
+    </head>
+    <body>
+        <header>
+        </header>
+<form action="../Models/connexion.php" method="post" class="form-inscription">
+        <div class="modal fade" id="exampleModalCo" tabindex="-1" aria-labelledby="exampleModalLabelCo" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div id="form-fields">
+                    <input type="text" id="email" name="email" required minlength="4" maxlength="55" size="10" placeholder="Email">
+                    <input type="text" id="password" name="password" required minlength="4" maxlength="55" size="10" placeholder="Password">
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Connexion</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          </form>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><!--inscription-->
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id="form-inscription">
+                        <div id="form-picture">
+                        </div>
+                        <div id="form-fields">
+                            <input type="text" id="login" name="login" required minlength="4" maxlength="8" size="10">
+                            <input type="text" id="password" name="password" required minlength="4" maxlength="8" size="10">
+                        </div>
+                        <div id="form-options">
+                            <div id="form-radio">
+                                <input type="radio" id="huey" name="drone" value="huey">
+                                <label for="huey">Se souvenir de moi</label>
+                            </div>
+                            <p>
+                                j'ai oublié mon mot de passe
+                            </p>
+                        </div>
+                        <div id="form-select">
+                            <button>Me connecter</button>
+                            <button>Crée un compte</button>
+                        </div>
+                    </div>
+                    <div id="form-particular">
+                        <main>
+                            <div class="stepper">
+                            <div class="step--1 step-active">Step 1</div>
+                            <div class="step--2">Step 2</div>
+                            <div class="step--3">Step 3</div>
+                            <div class="step--4">Step 4</div>
+                            <div class="step--5">Finish</div>
+                            </div>
+                            <form class="form form-active">
+                            <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                Personal Info
+                                </h1>
+
+                                <p class="form--header-text">
+                                Tell us more about you.
+                                </p>
+                            </div>
+                            <input type="text" placeholder="Email" />
+                            <input type="text" placeholder="Password" />
+                            <div id="form-radio">
+                                    <input type="radio" id="huey" name="drone" value="huey">
+                                    <label for="huey">Se souvenir de moi</label>
+                            </div>
+                            <p>
+                                j'ai oublié mon mot de passe
+                            </p>
+                            <button class="form__btn" id="btn-1">Crée mon compte</button>
+                            </form>
+                            <form class="form">
+                            <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                Company Info
+                                </h1>
+                                <p class="form--header-text">
+                                Tell us more about your company.
+                                </p>
+                            </div>
+                            <input type="text" placeholder="Nom" />
+                            <input type="text" placeholder="Prénom" />
+                            <input type="text" placeholder="Confirmation du mot de passe" />
+                            <button class="form__btn" id="btn-2-prev">Previous</button><!--pourquoi il fait bug ?-->
+                            <button class="form__btn" id="btn-2-next">Suivant</button>
+                            </form>
+                            <form class="form">
+                            <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                Social account
+                                </h1>
+
+                                <p class="form--header-text">
+                                Tell us more about your social account.
+                                </p>
+                            </div>
+                            <input type="text" placeholder="Téléphone"/>
+                            <input type="text" placeholder="Adresse" />
+                            <input type="text" placeholder="Ville" />
+                            <input type="text" placeholder="Code postal" />
+                            <button class="form__btn" id="btn-3-prev">Previous</button><!--pourquoi il fait bug ?-->
+                            <button class="form__btn" id="btn-3-next">Next</button>
+                            </form>
+                            <form class="form">
+                                <div class="form--header-container">
+                                <h1 class="form--header-title">
+                                    Social account
+                                </h1>
+                                <p class="form--header-text">
+                                    Tell us more about your social account.
+                                </p>
+                                </div>
+                                <input type="text" placeholder="Type de matériel"/>
+                                <input type="text" placeholder="Numéro de siret" />
+                                <!--ajouter pour joindre les fichiers-->
+                                <button class="form__btn" id="btn-4-prev">Previous</button>
+                                <button class="form__btn" id="btn-4-next">Submit</button>
+                            </form>
+                            <div class="form--message"></div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        </div><!--end formulaire d'inscription-->
+        <section id="welcome">
+            <div id="content">
+                <h3>
+                    Bienvenue
+                </h3>
+                <p>
+                    Bienvenue sur le site de Done it, vous avez besoin un électroménager en panne ? Nous nous chargeons du transport et de la réparation !
+                </p>
+                <div class="fields">
+                    <div id="list-devices">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Appareil à Réparer
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fields">
+                    <div id="-fix-calendar">
+                        <input id="date-time" type="date" value="2021-06-01">
+                    </div>
+                </div>
+                <div class="fields">
+                    <button id="clickfix">
+                        <label>Prendre rendez-vous</label>
+                    </button>
+                </div>
+            </div>
+            <div id="photo">
+                <img class="animate__animated animate__fadeInRightBig" id="tel" src="../src/assets/visuel_banner_hp.svg" alt="tel">
+            </div>
+        </section>
+        <section id="fix">
+            <div id="fix-content">
+              <h3>
+                Reservez votre créneaux
+              </h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim veniam
+            </div>
+            <div id="fix-fields">
+              <div id="fix-saisie">
+                <div id="list-devices">
+                  <!--list select-->
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="fields">
+                    <div id="address">
+                        <input type="text" id="adress" name="adress" required minlength="4" maxlength="50" size="30" placeholder="Votre adresse..">
+                    </div>
+                </div>
+              </div>
+              <div id="fix-options">
+                <p>
+                  réparation garantie 6 mois  déplacements inclus  pack zero risque
+                </p>
+              </div>
+            </div>
+            <button id="clickinfos">
+              <label>Réserver</label>
+            </button>
+          </section><!--end fix-->
+          <section id="fix-infos">
+            <div id="infos-content">
+              <h3>indiquez nous votre pannes</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+              </p>
+            </div>
+          <div id="fix-infos-content">
+            <div id="nature">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+            </div>
+            <div id="description">
+              <textarea id="precisions" name="presicions" placeholder="Précisez la nature de la panne en détails"></textarea>
+              <textarea id="autre" name="autre" placeholder="Marque de l'appareil"></textarea>
+              <textarea id="autre" name="autre" placeholder="Reference de l'appareil"></textarea>
+            </div>
+            <div id="adresse">
+              <!--affiche les infos récup dans les form donc la c'est du back-->
+            </div>
+          </div>
+          <button id="clickpaiement">
+            <label>
+              Confirmer
+            </label>
+          </button>
+          </section><!--end fix-infos-->
+          <section id="fix-paiement"><!--faire le js pour remplacer l'ancienne section-->
+            <div id="paiement">
+              <h3>Payer après l'intervention</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dignissimos obcaecati commodi labore nobis vitae illum amet mollitia quia ad.
+              </p>
+            </div>
+              <!--ajouter le logo de cb -->
+              <div id="num-card">
+                <label>numéro de carte</label>
+                <input type="number" required/>
+              </div>
+              <div id="card-infos">
+                <div id="date">
+                  <label>date de fin</label>
+                  <input type="number" required/>
+                </div>
+                <div id="CCV">
+                  <label>CCV</label>
+                  <input type="number" required/>
+                </div>
+              </div>
+              <div id="checkbox">
+                <div>
+                  <input type="checkbox" id="scales" name="conditions">
+                  <label for="conditions">En validant, vous acceptez les conditions générales de ventes de Murfy.fr.</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="scales" name="newsletter">
+                  <label for="newsletter">Je souhaite recevoir la newsletter et les astuces d’experts de Done’It.</label>
+                </div>
+              </div>
+              <button id="clickconfirm">
+                <label>Régler</label>
+              </button>
+          </section><!--end fix-paiement-->
+          <section id="confirmation">
+            <div id="tittle-confirmation">
+              <h3>
+                Felicitation, votre rendez-vous est PRIS !
+              </h3>
+              <p>
+                Un récapitulatif viens de vous être envoyé par mai, vous recevrez un texto la veille de votre rendez-vous ! Vous pouvez modifier vos
+                informations jusqu’à 4 jours avant votre rendez-vous.
+              </p>
+            </div>
+            <div id="fix-infos-confirm">
+              <div id="left">
+                <h4>Adresse</h4>
+                <!--infos back-->
+                <h4>Appareil</h4>
+                <h4>Crénaux</h4>
+              </div>
+              <div id="right">
+                <h4>Nature de la panne</h4>
+                <h4>Paiement</h4>
+                <h4>Total</h4>
+              </div>
+            </div>
+            <div id="buttons">
+              <button id="change">
+                Modifier les informations
+              </button>
+              <button>
+                Réparer un autre objet
+              </button>
+            </div>
+          </section><!--end confirmation-->
+          <section id="complement">
+            <h3>Preservez l’environnement et votre porte monnaie !</h3>
+            <div id="cards">
+              <div id="paiement">
+                <h4>Paiement 3x</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, quasi?</p>
+              </div>
+              <div id="when">
+                <h4>C'est quand vous voulez</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, asperiores!</p>
+              </div>
+              <div id="free">
+                <h4>Annulation gratuite</h4>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, unde!</p>
+              </div>
+            </div>
+          </section><!--end complement-->
+        <section id="infos">
+            <div id="card-list">
+                <div class="card">
+                    <div class="card-body">
+                        <img id="rouage" src="../src/assets/icon_rouage.svg" alt="logo-rouage">
+                      <h5 class="card-title">ANNULATION GRATUITE</h5>
+                      <p class="card-text">Vous pouvez annuler votre commande avant la prise en charge de votre appareil en panne.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img id="rouage" src="../src/assets/icon_certifié.svg" alt="logo-rouage">
+                      <h5 class="card-title">Des Réparatateurs Créatifs</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img id="rouage" src="../src/assets/icon_agenda.svg" alt="logo-rouage">
+                      <h5 class="card-title">DISPONIBLE 7J/7</h5>
+                      <p class="card-text">Nos réparateurs peuvent être disponibles 7 jours sur 7 pour venir récupérer vos appareils.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <img id="rouage" src="../src/assets/icon_money.svg" alt="logo-rouage">
+                      <h5 class="card-title">Paiement Après Intervention</h5>
+                      <p class="card-text">Vous payez de manière simple et sécurisé lorsque votre appareil a été réparé.</p>
+                    </div>
+                </div>
+            </div>
+            <button id="repair">
+                <label>Réparer mon objet</label>
+            </button>
+        </section>
+        <section id="eco-friendly">
+            <div id="alignment-eco">
+                <div id="content-eco">
+                    <h1>
+                        ECO FRIENDLY
+                    </h1>
+                    <p>
+                        La réparation de vos appareils favorisent la protection de l’environnement et vous fait faire des économies.
+                    </p>
+                    <button>
+                        <label>En savoir plus</label>
+                    </button>
+                </div>
+                <div id="picture-eco"></div>
+            </div>
+            <div id="alignment-partner">
+                <div id="picture-partner"></div>
+                <div id="content-partner">
+                    <h1>
+                        DEVENIR REPARATEUR/LIVREUR
+                    </h1>
+                    <p>
+                        Vous souhaitez devenir réparateur Done It autour de chez vous </br>N’hésitez pas à consulter notre page d’inscription.
+                    </p>
+                    <button>
+                        <label>Devenir réparateur</label>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="newsletter">
+        <div id="content">
+            <h3>
+                NOTRE NEWSLETTER
+            </h3>
+            <p>
+                Pour recevoir l’intégralité de nos avantages ou nos promotions, n’hésitez pas à vous inscrire à notre Newsletter.
+            </p>
+            <div id="mail">
+                <input type="email" id="email" pattern=".+@globex.com" size="30" required placeholder="Mon mail">
+            </div>
+        </div>
+        <div id="picture">
+            <img id="newsletter-logo" src="../src/assets/visuel_newsletter.svg" alt="logo-newsletter">
+        </div>
+    </section>
+    <section id="notice">
+        <div class="notice">
+            <div class="stars">
+                <div class="rating"><!--
+                --><a href="#5" title="Donner 5 étoiles">☆</a><!--
+                --><a href="#4" title="Donner 4 étoiles">☆</a><!--
+                --><a href="#3" title="Donner 3 étoiles">☆</a><!--
+                --><a href="#2" title="Donner 2 étoiles">☆</a><!--
+                 --><a href="#1" title="Donner 1 étoile">☆</a>
+                </div>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit qui nobis, totam veniam vero architecto!
+            </p>
+        </div>
+        <div class="notice">
+            <div class="stars">
+                <div class="rating"><!--
+                --><a href="#5" title="Donner 5 étoiles">☆</a><!--
+                --><a href="#4" title="Donner 4 étoiles">☆</a><!--
+                --><a href="#3" title="Donner 3 étoiles">☆</a><!--
+                --><a href="#2" title="Donner 2 étoiles">☆</a><!--
+                --><a href="#1" title="Donner 1 étoile">☆</a>
+                </div>
+            </div>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta facere non explicabo laudantium similique sed.
+            </p>
+        </div>
+        <div class="notice">
+            <div class="stars">
+                <div class="rating"><!--
+                --><a href="#5" title="Donner 5 étoiles">☆</a><!--
+                --><a href="#4" title="Donner 4 étoiles">☆</a><!--
+                --><a href="#3" title="Donner 3 étoiles">☆</a><!--
+                --><a href="#2" title="Donner 2 étoiles">☆</a><!--
+                --><a href="#1" title="Donner 1 étoile">☆</a>
+                </div>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima eaque et doloremque aperiam eius molestias!
+            </p>
+        </div>
+    </section>
+    <footer>
+        <div id="content">
+            <!--<div id="content-one">
+                <p>random name</p>
+                </br>
+                <p>random name</p>
+                </br>
+                <p>random name</p>
+                </br>
+                <p>random name</p>
+                </br>
+                <p>random name</p>
+                </br>
+            </div>
+            <div id="content-two">
+                <p>random name</p>
+                </br>
+                <p>random name</p>
+                </br>
+                <p>random name</p>
+                </br>
+                <p>random name</p>
+                </br>
+                <p>random name</p>
+                </br>
+            </div>
+        </div>-->
+        <div id="network">
+            <img id="network-logos" src="../src/assets/icon_réseaux_fb_tw_In.svg" alt="logo-network">
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script>
+        const formBtn1 = document.querySelector("#btn-1")
+        const formBtnPrev2 = document.querySelector("#btn-2-prev")
+        const formBtnNext2 = document.querySelector("#btn-2-next")
+        const formBtnPrev3 = document.querySelector("#btn-3-prev")
+        const formBtnNext3 = document.querySelector("#btn-3-next")
+        const formBtn4 = document.querySelector("#btn-4-next")
+        const formBtnPrev4 = document.querySelector("#btn-4-prev")
+        // Button listener of form 1
+        formBtn1.addEventListener("click", function(e) {
+        gotoNextForm(formBtn1, formBtnNext2, 1, 2)
+        e.preventDefault()
+        })
+        // Next button listener of form 2
+        formBtnNext2.addEventListener("click", function(e) {
+        gotoNextForm(formBtnNext2, formBtnNext3, 2, 3)
+        e.preventDefault()
+        })
+        // Previous button listener of form 2
+        formBtnPrev2.addEventListener("click", function(e) {
+        gotoNextForm(formBtnPrev2, formBtn1, 2, 1)
+        e.preventDefault()
+        })
+        // Next button listener of form 3
+        formBtnNext3.addEventListener("click", function(e) {
+        gotoNextForm(formBtnNext3, formBtn4, 3, 4)
+        e.preventDefault()
+        })
+        // Previous button listener of form 4
+        formBtnPrev3.addEventListener("click", function(e) {
+        gotoNextForm(formBtnPrev3, formBtnPrev2, 3, 2)
+        e.preventDefault()
+        })
+        // Previous button listener of form 4
+        formBtnPrev4.addEventListener("click", function(e) {
+        gotoNextForm(formBtnNext3, formBtnPrev4, 4, 3)
+        e.preventDefault()
+        })
+        // Button listener of form 4
+        formBtn4.addEventListener("click", function(e) {
+        document.querySelector(`.step--4`).classList.remove("step-active")
+        document.querySelector(`.step--5`).classList.add("step-active")
+        formBtn3.parentElement.style.display = "none"
+        document.querySelector(".form--message").innerHTML = `
+        <h1 class="form--message-text">Your account is successfully created </h1>`
+        e.preventDefault()
+        })
+        const gotoNextForm = (prev, next, stepPrev, stepNext) => {
+         // Get form through the button
+        const prevForm = prev.parentElement
+        const nextForm = next.parentElement
+        const nextStep = document.querySelector(`.step--${stepNext}`)
+        const prevStep = document.querySelector(`.step--${stepPrev}`)
+        // Add active/inactive classes to both previous and next form
+        nextForm.classList.add("form-active")
+        nextForm.classList.add("form-active-animate")
+        prevForm.classList.add("form-inactive")
+        // Change the active step element
+        prevStep.classList.remove("step-active")
+        nextStep.classList.add("step-active")
+        // Remove active/inactive classes to both previous an next form
+        setTimeout(() => {
+            prevForm.classList.remove("form-active")
+            prevForm.classList.remove("form-inactive")
+            nextForm.classList.remove("form-active-animate")
+        }, 1000)
+        }
+
+        var clickfix = document.getElementById("clickfix");
+          var clickinfos = document.getElementById("clickinfos");
+          var clickpaiement = document.getElementById("clickpaiement");
+          var clickconfirm = document.getElementById("clickconfirm");
+          var welcome = document.getElementById("welcome");
+          var fix = document.getElementById("fix");
+          var infos = document.getElementById("fix-infos");
+          var paiement = document.getElementById("fix-paiement");
+          var confirmation = document.getElementById("confirmation");
+          function showFix()
+          {
+            welcome.style.display = "none";
+            fix.style.display = "block";
+          };
+          function showInfos()
+          {
+            infos.style.display = "block";
+            fix.style.display = "none";
+          };
+          function showPaiement()
+          {
+            infos.style.display = "none";
+            paiement.style.display = "block";
+          };
+          function showConfirm()
+          {
+            paiement.style.display = "none";
+            confirmation.style.display = "block";
+          };
+          clickfix.onclick = showFix;
+          clickinfos.onclick = showInfos;
+          clickpaiement.onclick = showPaiement;
+          clickconfirm.onclick = showConfirm;
+    </script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="../style/commande.css" rel="stylesheet">
+        <title>Page de commmande</title>
+    </head>
+    <body>
+        <div class="container">
+            <form action="../models/addCommande.php" method="post" class="form-commande" enctype="multipart/form-data">
+                <div class="commande">
+                    <label for="name">Saisir le type du produit : </label>
+                    <select name="categorie" id="categorie" required>
+                        <option value="">Catégorie</option>
+                        {% for categorie in listeCategories %}
+                            <option value="{{ categorie.nom }}">{{ categorie.nom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </br>
+                <div class="commande">
+                    <label for="name">Saisir le marque du produit : </label>
+                    <input type="text" name="marque" id="marque" pattern="[^\s]+" required>
+                </div>
+            </br>
+                <div class="commande">
+                    <label for="name">Saisir référence du produit : </label>
+                    <input type="text" name="ref" id="ref" pattern="[^\s]+" required>
+                </div>
+            </br>
+                <div class="commande-area">
+                    <div class="titre">
+                        <label for="nature">Decrivez la nature du problème : </label>
+                    </div>
+                    <textarea id="description" name="description" placeholder="Description du problème" required></textarea>
+                </div>
+            </br>
+                <div class="commande-image">
+                    <label for="version">Ajouter des images (facultatif) : </label>
+                    <div class="fichier">
+                        <input type="file" id="images" name="images[]" accept="image/png, image/jpeg, image/gif" multiple>
+                    </div>
+                </div>
+                {% if erreurs != "" %}<span style="color:red">{{ erreurs }}</span>{% endif %}
+            </br>
+            <button type="submit">Passer commande</button>
+            </form>
+        </div>
+    </body>
+</html>

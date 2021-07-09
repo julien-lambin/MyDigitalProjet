@@ -1,0 +1,64 @@
+#dashboard {
+  margin-left: 50px;
+  width: 80%;
+}
+#dashboard .champs {
+  display: flex;
+  width: 100%;
+  margin-bottom: 25px;
+}
+#dashboard .champs #search-cours {
+  margin-right: 20px;
+}
+#dashboard .champs #search-time {
+  margin-right: 20px;
+}
+#dashboard #cours {
+  margin-bottom: 50px;
+}
+#dashboard #cours td {
+  border: solid 2px;
+  border-color: white;
+}
+#dashboard #cours thead {
+  background-color: #0d6efd;
+  color: white;
+  text-align: center;
+  height: 75px;
+}
+#dashboard #cours tbody {
+  text-align: center;
+}
+#dashboard #cours tbody td {
+  width: 10%;
+  border: solid 2px;
+  border-color: black;
+  text-align: center;
+}
+#dashboard #finish {
+  margin-bottom: 50px;
+}
+#dashboard #finish table {
+  border-radius: 50px;
+}
+#dashboard #finish td {
+  border: solid 2px;
+  border-color: white;
+  height: 50px;
+}
+#dashboard #finish thead {
+  background-color: #b4c851;
+  color: white;
+  height: 75px;
+  text-align: center;
+}
+#dashboard #finish tbody {
+  text-align: center;
+}
+#dashboard #finish tbody td {
+  width: 10%;
+  border: solid 2px;
+  border-color: black;
+}
+
+/*# sourceMappingURL=dashboard.css.map */

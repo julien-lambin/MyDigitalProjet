@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/inscription_pro.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <link href="../style/inscription.css" rel="stylesheet">
+        <title>Page d'inscription Pro</title>
+    </head>
+    <body>
+        <div class="container">
+        {% if etape == "" %}
+            <form action="#" id="formMailPro" method="post" class="form-mailPro" enctype="multipart/form-data">
+
+            <div class="inscription">
+                <label for="version">Ajouter une photo de profile (facultatif) : </label>
+                <div class="fichier">
+                    <input type="file" id="photo_profil" name="photo_profil" accept="image/png, image/jpeg, image/gif">
+                </div>
+            </div>
+            </br>
+                <div class="inscription">
+                    <input type="email" name="email" id="email" placeholder="Saisir votre email"pattern="[^\s]+" required>
+                </div>
+            </br>
+                <div class="inscription">
+                    <input type="text" name="nom" id="nom" placeholder="Saisir votre nom" pattern="[^\s]+" required>
+                </div>
+            </br>
+            <div class="inscription">
+                    <input type="text" name="prenom" id="prenom" placeholder="Saisir votre prénom" pattern="[^\s]+" required>
+                </div>
+            </br>
+            <div class="inscription">
+                    <input type="checkbox" name="conditionDutilisation" id="conditionDutilisation" pattern="[^\s]+" required>
+                </div>
+            </br>
+            <div class="inscription">
+                    <input type="checkbox" name="newsletter" id="newsletter" pattern="[^\s]+" required>
+                </div>
+            </br>
+                <button type="submit" id="valideMail"><div id="text-inscription">Suivant</div></button>
+            </form>
+            {% endif %}
+
+            {% if etape == "1" %}
+            <form action="#" id="formPassword" method="post" class="form-password">
+            </br>
+                <div class="inscription">
+                    <input type="password" id="password" name="password" minlength="8" placeholder="Saisir un mot de passe" pattern="[^\s]+" required>
+                </div>
+            </br>
+            <div class="inscription">
+                    <input type="password" id="password-confirm" name="password-confirm" minlength="8" placeholder="confirmer le mot de passe"pattern="[^\s]+" required>
+                </div>
+            </br>
+                <button type="submit" id="validePassword"><div id="text-inscription">Suivant</div></button>
+            </form>
+            {% endif %}
+
+            {% if etape == "2" %}
+            <form action="#" id="formAdresse" method="post" class="form-adresse">
+            </br>
+                <div class="inscription">
+                    <input type="tel" id="phone" name="phone" placeholder="Saisir votre numéro" pattern="[0]{1}[0-9]{9}" required>
+            </div>
+            </br>
+                <div class="inscription">
+                    <input type="text" id="adresse" name="adresse" placeholder="Saisir votre adresse" required>
+            </div>
+            </br>
+            <div class="inscription">
+                    <input type="text" id="ville" name="ville" placeholder="Ville" required>
+            </div>
+            </br>
+            <div class="inscription">
+                    <input type="text" id="code_postal" name="code_postal" placeholder="Code postal" required>
+            </div>
+            </br>
+            </br>
+                <button type="submit" id="valideAdresse"><div id="text-inscription">Suivant</div></button>
+            </form>
+            {% endif %}
+
+            {% if etape == "3" %}
+            <form action="#" id="formEntreprise" method="post" class="form-entreprise" enctype="multipart/form-data">
+            </br>
+            <div class="inscription">
+                <select name="categorie[]" id="categorie" multiple style="width:100%">
+                    <option value="">Catégorie</option>
+                    {% for categorie in listeCategories %}
+                        <option value="{{ categorie.nom }}">{{ categorie.nom }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            </br>
+            <div class="inscription">
+                <input type="text" id="nom_entreprise" name="nom_entreprise" placeholder="Nom entreprise" required>
+            </div>
+            </br>
+                <div class="inscription">
+                    <input type="text" id="siret" name="siret" placeholder="SIRET" required>
+            </div>
+            </br>
+            <div class="inscription">
+                <div class="fichier">
+                    <input type="file" id="contrat_pro" name="contrat_pro" accept="image/png, image/jpeg, image/gif" >
+                </div>
+            </div>
+            </br>
+            <div class="inscription">
+                <div class="fichier">
+                    <input type="file" id="diplome" name="diplome" accept="image/png, image/jpeg, image/gif" >
+                </div>
+            </div>
+            </br>
+            </br>
+                <button type="submit" id="valideEntreprise"><div id="text-inscription">Valider</div></button>
+            </form>
+            {% endif %}
+        </div>
+    </body>
+</html>
